@@ -1,12 +1,15 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from .. import models, schemas, database, auth
+import models
+import schemas
+import database
+import auth
 import google.generativeai as genai
 import os
 
 router = APIRouter(prefix="/ai", tags=["AI Assistant"])
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyDm1KEKhUPI6o1NYFc1R3CIhO0GhzgbSqM")
 if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
 
